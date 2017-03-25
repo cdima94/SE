@@ -1,4 +1,4 @@
-package entity;
+package com.android.fitness.entity;
 
 public enum Style {
 

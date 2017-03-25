@@ -1,7 +1,9 @@
-package entity;
+package com.android.fitness.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,6 +34,7 @@ public class Fitness {
 	@Column(name = "max_height", nullable = false)
 	private int maxHeight;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "style", nullable = false)
 	private Style style;
 
@@ -61,4 +64,47 @@ public class Fitness {
 
 	@Column(name = "legs", nullable = false)
 	private int legs;
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + maxAge;
+		result = prime * result + maxHeight;
+		result = prime * result + maxWeight;
+		result = prime * result + minAge;
+		result = prime * result + minHeight;
+		result = prime * result + minWeight;
+		result = prime * result + ((style == null) ? 0 : style.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Fitness other = (Fitness) obj;
+		if (id != other.id)
+			return false;
+		if (maxAge != other.maxAge)
+			return false;
+		if (maxHeight != other.maxHeight)
+			return false;
+		if (maxWeight != other.maxWeight)
+			return false;
+		if (minAge != other.minAge)
+			return false;
+		if (minHeight != other.minHeight)
+			return false;
+		if (minWeight != other.minWeight)
+			return false;
+		if (style != other.style)
+			return false;
+		return true;
+	}
 }
