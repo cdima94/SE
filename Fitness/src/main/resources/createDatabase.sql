@@ -1,6 +1,6 @@
 CREATE DATABASE `se`;
 CREATE TABLE `fitness` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `min_age` int(11) NOT NULL,
   `max_age` int(11) NOT NULL,
   `min_weight` int(11) NOT NULL,
@@ -17,8 +17,10 @@ CREATE TABLE `fitness` (
   `abdomen` int(11) NOT NULL,
   `feet` int(11) NOT NULL,
   `legs` int(11) NOT NULL,
+  `gender` enum('MALE','FEMALE') DEFAULT NULL,
+  `dificulty` enum('YES','NO') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8
 
 Insert into FITNESS (ID, MIN_AGE, MAX_AGE, MIN_WEIGHT, MAX_WEIGHT, MIN_HEIGHT, MAX_HEIGHT, STYLE, BICEPS, TRICEPS, FOREARM, SHOULDER, CHEST, BACK, ABDOMEN, FEET, LEGS)  
 values (1, 14, 15, 40, 45, 146, 150, 'PASSIVE', 10, 10, 10, 10, 8, 8, 8, 8, 8);
@@ -137,4 +139,10 @@ values (59, 27, 32, 81, 86, 185, 190, 'ACTIVE', 20, 21, 22, 18, 18, 15, 11, 18, 
 Insert into FITNESS (ID, MIN_AGE, MAX_AGE, MIN_WEIGHT, MAX_WEIGHT, MIN_HEIGHT, MAX_HEIGHT, STYLE, BICEPS, TRICEPS, FOREARM, SHOULDER, CHEST, BACK, ABDOMEN, FEET, LEGS) 
 values (60, 27, 32, 87, 91, 191, 200, 'ACTIVE', 18, 19, 12, 18, 18, 22, 18, 19, 11);
 
-
+update fitness set gender='FEMALE' where (id % 2) = 0;
+update fitness set gender='FEMALE' where MOD(id,2);
+update fitness set dificulty='YES' where (id % 2) = 0;
+update fitness set dificulty='NO' where MOD(id,2);
+ALTER TABLE `se`.`fitness` 
+CHANGE COLUMN `gender` `gender` ENUM('MALE', 'FEMALE') NOT NULL ,
+CHANGE COLUMN `dificulty` `dificulty` ENUM('YES', 'NO') NOT NULL ;

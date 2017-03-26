@@ -21,7 +21,8 @@ public class FitnessController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/getFitnessByMinAge/{minAge}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-	public List<Fitness> getFitnessMinAge(@PathVariable String minAge) {
-		return fService.getByMinAge(Integer.valueOf(minAge));
+	public List<Fitness> getFitnessMinAge(@PathVariable("minAge") int minAge) {
+		List<Fitness> fitnessList = fService.getByMinAge(minAge);
+		return fitnessList;
 	}
 }
