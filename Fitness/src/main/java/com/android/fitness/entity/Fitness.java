@@ -107,4 +107,138 @@ public class Fitness {
 			return false;
 		return true;
 	}
+
+	public int getMinAge() {
+		return minAge;
+	}
+
+	public void setMinAge(int minAge) {
+		this.minAge = minAge;
+	}
+
+	public int getMaxAge() {
+		return maxAge;
+	}
+
+	public void setMaxAge(int maxAge) {
+		this.maxAge = maxAge;
+	}
+
+	public int getMinWeight() {
+		return minWeight;
+	}
+
+	public void setMinWeight(int minWeight) {
+		this.minWeight = minWeight;
+	}
+
+	public int getMaxWeight() {
+		return maxWeight;
+	}
+
+	public void setMaxWeight(int maxWeight) {
+		this.maxWeight = maxWeight;
+	}
+
+	public int getMinHeight() {
+		return minHeight;
+	}
+
+	public void setMinHeight(int minHeight) {
+		this.minHeight = minHeight;
+	}
+
+	public int getMaxHeight() {
+		return maxHeight;
+	}
+
+	public void setMaxHeight(int maxHeight) {
+		this.maxHeight = maxHeight;
+	}
+
+	public Style getStyle() {
+		return style;
+	}
+
+	public void setStyle(Style style) {
+		this.style = style;
+	}
+
+	public int getBiceps() {
+		return biceps;
+	}
+
+	public void setBiceps(int biceps) {
+		this.biceps = biceps;
+	}
+
+	public int getTriceps() {
+		return triceps;
+	}
+
+	public void setTriceps(int triceps) {
+		this.triceps = triceps;
+	}
+
+	public int getForearm() {
+		return forearm;
+	}
+
+	public void setForearm(int forearm) {
+		this.forearm = forearm;
+	}
+
+	public int getShoulder() {
+		return shoulder;
+	}
+
+	public void setShoulder(int shoulder) {
+		this.shoulder = shoulder;
+	}
+
+	public int getChest() {
+		return chest;
+	}
+
+	public void setChest(int chest) {
+		this.chest = chest;
+	}
+
+	public int getBack() {
+		return back;
+	}
+
+	public void setBack(int back) {
+		this.back = back;
+	}
+
+	public int getAbdomen() {
+		return abdomen;
+	}
+
+	public void setAbdomen(int abdomen) {
+		this.abdomen = abdomen;
+	}
+
+	public int getFeet() {
+		return feet;
+	}
+
+	public void setFeet(int feet) {
+		this.feet = feet;
+	}
+
+	public int getLegs() {
+		return legs;
+	}
+
+	public void setLegs(int legs) {
+		this.legs = legs;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	
 }
