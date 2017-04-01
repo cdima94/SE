@@ -1,0 +1,174 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Input page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<div id="agePage" th:fragment="agePage">
+		<h1>AGE</h1>
+		<input id="ageInput" placeholder="Your input here" />
+		<button class="btn btn-primary" type="button" onclick="nextInput();">
+			<b>Next</b>
+		</button>
+
+		<script th:inline="javascript">
+			function nextInput() {
+				var x = document.getElementById("ageInput").value;
+				$.ajax({
+					url : "/setActiveInput",
+					type : "GET",
+					data : {
+						activePage : 'weightPage',
+						input: x 
+					},
+					success : function() {
+						location.replace("/");
+					}
+				});
+			}
+		</script>
+	</div>
+
+	<div id="weightPage" th:fragment="weightPage">
+		<h1>WEIGHT</h1>
+		<input id="weightInput" placeholder="Your input here" />
+		<button class="btn btn-primary" type="button" onclick="nextInput();">
+			<b>Next</b>
+		</button>
+
+		<script>
+			function nextInput() {
+				var x = document.getElementById("weightInput").value;
+				$.ajax({
+					url : "/setActiveInput",
+					type : "GET",
+					data : {
+						activePage : 'heightPage',
+						input : x
+					},
+					success : function() {
+						location.replace("/");
+					}
+				});
+			}
+		</script>
+	</div>
+
+	<div id="heightPage" th:fragment="heightPage">
+		<h1>HEIGHT</h1>
+		<input id="heightInput" placeholder="Your input here" />
+		<button class="btn btn-primary" type="button" onclick="nextInput();">
+			<b>Next</b>
+		</button>
+
+		<script>
+			function nextInput() {
+				var x = document.getElementById("heightInput").value;
+				$.ajax({
+					url : "/setActiveInput",
+					type : "GET",
+					data : {
+						activePage : 'stylePage',
+						input : x
+					},
+					success : function() {
+						location.replace("/");
+					}
+				});
+			}
+		</script>
+	</div>
+
+	<div id="stylePage" th:fragment="stylePage">
+		<h1>STYLE</h1>
+		<select class="form-control" id="styleSelect">
+			<option
+				th:each="style: ${allStyles}"
+				th:label="${style}" th:value="${style}"></option>
+		</select>
+		<button class="btn btn-primary" type="button" onclick="nextInput();">
+			<b>Next</b>
+		</button>
+
+		<script>
+			function nextInput() {
+				var x = document.getElementById("styleSelect").value;
+				$.ajax({
+					url : "/setActiveInput",
+					type : "GET",
+					data : {
+						activePage : 'genderPage',
+						input : x
+					},
+					success : function() {
+						location.replace("/");
+					}
+				});
+			}
+		</script>
+	</div>
+
+	<div id="genderPage" th:fragment="genderPage">
+		<h1>GENDER</h1>
+		<select class="form-control" id="genderSelect">
+			<option
+				th:each="gender: ${allGenders}"
+				th:label="${gender}" th:value="${gender}"></option>
+		</select>
+		<button class="btn btn-primary" type="button" onclick="nextInput();">
+			<b>Next</b>
+		</button>
+
+		<script>
+			function nextInput() {
+				var x = document.getElementById("genderSelect").value;
+				$.ajax({
+					url : "/setActiveInput",
+					type : "GET",
+					data : {
+						activePage : 'dificultyPage',
+						input : x
+					},
+					success : function() {
+						location.replace("/");
+					}
+				});
+			}
+		</script>
+	</div>
+
+	<div id="dificultyPage" th:fragment="dificultyPage">
+		<h1>DIFICULTY</h1>
+		<select class="form-control" id="dificultySelect">
+			<option
+				th:each="dificulty: ${allDificulties}"
+				th:label="${dificulty}" th:value="${dificulty}"></option>
+		</select>
+		<button class="btn btn-primary" type="button" onclick="nextInput();">
+			<b>Submit</b>
+		</button>
+
+		<script>
+			function nextInput() {
+				var x = document.getElementById("dificultySelect").value;
+				$.ajax({
+					url : "/setResult",
+					type : "GET",
+					data : {
+						activePage : 'dificultyPage',
+						input : x
+					}
+				});
+			}
+		</script>
+	</div>
+
+</body>
+</html>

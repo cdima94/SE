@@ -13,8 +13,12 @@
 <body>
 
 	<div th:fragment="sidebar" id="sidebarId">
-		<div th:replace="sidebarButtons :: buttons(${returnedHTMLButtons}, ${buttonsBlock})" >buttons</div>
+		<div th:replace="SidebarButtons :: buttons(${returnedHTMLButtons}, ${buttonsBlock})" >buttons</div>
 	</div>
 	
+	<div th:fragment="inputs" id="inputId">
+		<div th:include="InputPage :: ${inputPage}" >buttons</div>
+	</div>
+		
 </body>
 </html>
