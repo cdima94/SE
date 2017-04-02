@@ -5,6 +5,5 @@ public enum Pages {
 	weightPage,
 	heightPage,
 	stylePage,
-	genderPage,
-	dificultyPage,
+	resultPage,
 }

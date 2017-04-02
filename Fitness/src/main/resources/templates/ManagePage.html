@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   </head>
   
-<body>
+<body onload="getResult();">
 
 	<div th:fragment="sidebar" id="sidebarId">
 		<div th:replace="SidebarButtons :: buttons(${returnedHTMLButtons}, ${buttonsBlock})" >buttons</div>

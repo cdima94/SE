@@ -1,5 +1,6 @@
 package com.android.fitness.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.android.fitness.entity.Fitness;
+import com.android.fitness.service.CurrentUserInfo;
 import com.android.fitness.service.FitnessService;
 
 @Controller
@@ -86,5 +88,11 @@ public class FitnessController {
 	@RequestMapping(value = "/updateDificulty", method = RequestMethod.GET)
 	public void setNewDificulty(@RequestParam(defaultValue = "-1", name = "dificultyInput") String dificultyInput) {
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getResultAfterAgeSet", method = RequestMethod.GET)
+	public CurrentUserInfo getResultAfterAgeSet() {
+		return fService.result();
 	}
 }

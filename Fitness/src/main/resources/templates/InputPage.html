@@ -42,7 +42,97 @@
 		<button class="btn btn-primary" type="button" onclick="nextInput();">
 			<b>Next</b>
 		</button>
-
+		<p>Results:</p>
+		<div style="display: inline;">
+			<p style="display: inherit;">Biceps: Between</p>
+			<p id = "minBiceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBiceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Triceps: Between</p>
+			<p id = "minTriceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxTriceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Forearm: Between</p>
+			<p id = "minForearm" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxForearm" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Shoulder: Between</p>
+			<p id = "minShoulder" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxShoulder" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Chest: Between</p>
+			<p id = "minChest" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxChest" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Back: Between</p>
+			<p id = "minBack" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBack" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Abdomen: Between</p>
+			<p id = "minAbdomen" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxAbdomen" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Feet: Between</p>
+			<p id = "minFeet" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxFeet" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Legs: Between</p>
+			<p id = "minLegs" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxLegs" style="display: inherit;"></p>
+		</div>
+		<script>
+			function getResult() {
+				$.ajax({
+					url : "/getResultAfterAgeSet",
+					type : "GET",
+					success : function(data) {
+						document.getElementById("minBiceps").innerHTML = data.minBiceps;
+						document.getElementById("minTriceps").innerHTML = data.minTriceps;
+						document.getElementById("minForearm").innerHTML = data.minForearm;
+						document.getElementById("minShoulder").innerHTML = data.minShoulder;
+						document.getElementById("minChest").innerHTML = data.minChest;
+						document.getElementById("minBack").innerHTML = data.minBack;
+						document.getElementById("minAbdomen").innerHTML = data.minAbdomen;
+						document.getElementById("minFeet").innerHTML = data.minFeet;
+						document.getElementById("minLegs").innerHTML = data.minLegs;
+						document.getElementById("maxBiceps").innerHTML = data.maxBiceps;
+						document.getElementById("maxTriceps").innerHTML = data.maxTriceps;
+						document.getElementById("maxForearm").innerHTML = data.maxForearm;
+						document.getElementById("maxShoulder").innerHTML = data.maxShoulder;
+						document.getElementById("maxChest").innerHTML = data.maxChest;
+						document.getElementById("maxBack").innerHTML = data.maxBack;
+						document.getElementById("maxAbdomen").innerHTML = data.maxAbdomen;
+						document.getElementById("maxFeet").innerHTML = data.maxFeet;
+						document.getElementById("maxLegs").innerHTML = data.maxLegs;
+					}
+				});
+			}
+		</script>
 		<script>
 			function nextInput() {
 				var x = document.getElementById("weightInput").value;
@@ -67,7 +157,97 @@
 		<button class="btn btn-primary" type="button" onclick="nextInput();">
 			<b>Next</b>
 		</button>
-
+		<p>Results:</p>
+		<div style="display: inline;">
+			<p style="display: inherit;">Biceps: Between</p>
+			<p id = "minBiceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBiceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Triceps: Between</p>
+			<p id = "minTriceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxTriceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Forearm: Between</p>
+			<p id = "minForearm" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxForearm" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Shoulder: Between</p>
+			<p id = "minShoulder" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxShoulder" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Chest: Between</p>
+			<p id = "minChest" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxChest" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Back: Between</p>
+			<p id = "minBack" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBack" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Abdomen: Between</p>
+			<p id = "minAbdomen" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxAbdomen" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Feet: Between</p>
+			<p id = "minFeet" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxFeet" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Legs: Between</p>
+			<p id = "minLegs" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxLegs" style="display: inherit;"></p>
+		</div>
+		<script>
+			function getResult() {
+				$.ajax({
+					url : "/getResultAfterAgeSet",
+					type : "GET",
+					success : function(data) {
+						document.getElementById("minBiceps").innerHTML = data.minBiceps;
+						document.getElementById("minTriceps").innerHTML = data.minTriceps;
+						document.getElementById("minForearm").innerHTML = data.minForearm;
+						document.getElementById("minShoulder").innerHTML = data.minShoulder;
+						document.getElementById("minChest").innerHTML = data.minChest;
+						document.getElementById("minBack").innerHTML = data.minBack;
+						document.getElementById("minAbdomen").innerHTML = data.minAbdomen;
+						document.getElementById("minFeet").innerHTML = data.minFeet;
+						document.getElementById("minLegs").innerHTML = data.minLegs;
+						document.getElementById("maxBiceps").innerHTML = data.maxBiceps;
+						document.getElementById("maxTriceps").innerHTML = data.maxTriceps;
+						document.getElementById("maxForearm").innerHTML = data.maxForearm;
+						document.getElementById("maxShoulder").innerHTML = data.maxShoulder;
+						document.getElementById("maxChest").innerHTML = data.maxChest;
+						document.getElementById("maxBack").innerHTML = data.maxBack;
+						document.getElementById("maxAbdomen").innerHTML = data.maxAbdomen;
+						document.getElementById("maxFeet").innerHTML = data.maxFeet;
+						document.getElementById("maxLegs").innerHTML = data.maxLegs;
+					}
+				});
+			}
+		</script>
 		<script>
 			function nextInput() {
 				var x = document.getElementById("heightInput").value;
@@ -96,7 +276,97 @@
 		<button class="btn btn-primary" type="button" onclick="nextInput();">
 			<b>Next</b>
 		</button>
-
+		<p>Results:</p>
+		<div style="display: inline;">
+			<p style="display: inherit;">Biceps: Between</p>
+			<p id = "minBiceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBiceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Triceps: Between</p>
+			<p id = "minTriceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxTriceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Forearm: Between</p>
+			<p id = "minForearm" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxForearm" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Shoulder: Between</p>
+			<p id = "minShoulder" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxShoulder" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Chest: Between</p>
+			<p id = "minChest" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxChest" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Back: Between</p>
+			<p id = "minBack" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBack" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Abdomen: Between</p>
+			<p id = "minAbdomen" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxAbdomen" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Feet: Between</p>
+			<p id = "minFeet" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxFeet" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Legs: Between</p>
+			<p id = "minLegs" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxLegs" style="display: inherit;"></p>
+		</div>
+		<script>
+			function getResult() {
+				$.ajax({
+					url : "/getResultAfterAgeSet",
+					type : "GET",
+					success : function(data) {
+						document.getElementById("minBiceps").innerHTML = data.minBiceps;
+						document.getElementById("minTriceps").innerHTML = data.minTriceps;
+						document.getElementById("minForearm").innerHTML = data.minForearm;
+						document.getElementById("minShoulder").innerHTML = data.minShoulder;
+						document.getElementById("minChest").innerHTML = data.minChest;
+						document.getElementById("minBack").innerHTML = data.minBack;
+						document.getElementById("minAbdomen").innerHTML = data.minAbdomen;
+						document.getElementById("minFeet").innerHTML = data.minFeet;
+						document.getElementById("minLegs").innerHTML = data.minLegs;
+						document.getElementById("maxBiceps").innerHTML = data.maxBiceps;
+						document.getElementById("maxTriceps").innerHTML = data.maxTriceps;
+						document.getElementById("maxForearm").innerHTML = data.maxForearm;
+						document.getElementById("maxShoulder").innerHTML = data.maxShoulder;
+						document.getElementById("maxChest").innerHTML = data.maxChest;
+						document.getElementById("maxBack").innerHTML = data.maxBack;
+						document.getElementById("maxAbdomen").innerHTML = data.maxAbdomen;
+						document.getElementById("maxFeet").innerHTML = data.maxFeet;
+						document.getElementById("maxLegs").innerHTML = data.maxLegs;
+					}
+				});
+			}
+		</script>
 		<script>
 			function nextInput() {
 				var x = document.getElementById("styleSelect").value;
@@ -104,7 +374,7 @@
 					url : "/setActiveInput",
 					type : "GET",
 					data : {
-						activePage : 'genderPage',
+						activePage : 'resultPage',
 						input : x
 					},
 					success : function() {
@@ -115,60 +385,99 @@
 		</script>
 	</div>
 
-	<div id="genderPage" th:fragment="genderPage">
-		<h1>GENDER</h1>
-		<select class="form-control" id="genderSelect">
-			<option
-				th:each="gender: ${allGenders}"
-				th:label="${gender}" th:value="${gender}"></option>
-		</select>
-		<button class="btn btn-primary" type="button" onclick="nextInput();">
-			<b>Next</b>
-		</button>
-
+	<div id="resultPage" th:fragment="resultPage">
+		<h1>RESULT</h1>
+		<p>Results:</p>
+		<div style="display: inline;">
+			<p style="display: inherit;">Biceps: Between</p>
+			<p id = "minBiceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBiceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Triceps: Between</p>
+			<p id = "minTriceps" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxTriceps" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Forearm: Between</p>
+			<p id = "minForearm" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxForearm" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Shoulder: Between</p>
+			<p id = "minShoulder" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxShoulder" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Chest: Between</p>
+			<p id = "minChest" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxChest" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Back: Between</p>
+			<p id = "minBack" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxBack" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Abdomen: Between</p>
+			<p id = "minAbdomen" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxAbdomen" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Feet: Between</p>
+			<p id = "minFeet" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxFeet" style="display: inherit;"></p>
+		</div>
+		<br />
+		<div style="display: inline;">
+			<p style="display: inherit;">Legs: Between</p>
+			<p id = "minLegs" style="display: inherit;"></p>
+			<p style="display: inherit;">and</p>
+			<p id = "maxLegs" style="display: inherit;"></p>
+		</div>
 		<script>
-			function nextInput() {
-				var x = document.getElementById("genderSelect").value;
+			function getResult() {
 				$.ajax({
-					url : "/setActiveInput",
+					url : "/getResultAfterAgeSet",
 					type : "GET",
-					data : {
-						activePage : 'dificultyPage',
-						input : x
-					},
-					success : function() {
-						location.replace("/");
+					success : function(data) {
+						document.getElementById("minBiceps").innerHTML = data.minBiceps;
+						document.getElementById("minTriceps").innerHTML = data.minTriceps;
+						document.getElementById("minForearm").innerHTML = data.minForearm;
+						document.getElementById("minShoulder").innerHTML = data.minShoulder;
+						document.getElementById("minChest").innerHTML = data.minChest;
+						document.getElementById("minBack").innerHTML = data.minBack;
+						document.getElementById("minAbdomen").innerHTML = data.minAbdomen;
+						document.getElementById("minFeet").innerHTML = data.minFeet;
+						document.getElementById("minLegs").innerHTML = data.minLegs;
+						document.getElementById("maxBiceps").innerHTML = data.maxBiceps;
+						document.getElementById("maxTriceps").innerHTML = data.maxTriceps;
+						document.getElementById("maxForearm").innerHTML = data.maxForearm;
+						document.getElementById("maxShoulder").innerHTML = data.maxShoulder;
+						document.getElementById("maxChest").innerHTML = data.maxChest;
+						document.getElementById("maxBack").innerHTML = data.maxBack;
+						document.getElementById("maxAbdomen").innerHTML = data.maxAbdomen;
+						document.getElementById("maxFeet").innerHTML = data.maxFeet;
+						document.getElementById("maxLegs").innerHTML = data.maxLegs;
 					}
 				});
 			}
 		</script>
 	</div>
-
-	<div id="dificultyPage" th:fragment="dificultyPage">
-		<h1>DIFICULTY</h1>
-		<select class="form-control" id="dificultySelect">
-			<option
-				th:each="dificulty: ${allDificulties}"
-				th:label="${dificulty}" th:value="${dificulty}"></option>
-		</select>
-		<button class="btn btn-primary" type="button" onclick="nextInput();">
-			<b>Submit</b>
-		</button>
-
-		<script>
-			function nextInput() {
-				var x = document.getElementById("dificultySelect").value;
-				$.ajax({
-					url : "/setResult",
-					type : "GET",
-					data : {
-						activePage : 'dificultyPage',
-						input : x
-					}
-				});
-			}
-		</script>
-	</div>
-
 </body>
 </html>

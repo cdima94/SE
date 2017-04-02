@@ -1,15 +1,15 @@
 package com.android.fitness.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.android.fitness.entity.Dificulty;
 import com.android.fitness.entity.Fitness;
-import com.android.fitness.entity.Gender;
 import com.android.fitness.entity.Pages;
 import com.android.fitness.entity.Style;
 import com.android.fitness.repository.FitnessRepository;
@@ -23,8 +23,10 @@ public class FitnessService {
 	private Pages activePage = Pages.agePage;
 
 	private enum ButtonText {
-		Age, Weight, Height, Style, Gender, Dificulty
+		Age, Weight, Height, Style, Result
 	}
+	
+	private Map<Pages, List<Fitness>> mPages2FitnessList = new HashMap<>();
 
 	private CurrentUserInfo currentUserInfo = new CurrentUserInfo();
 
@@ -32,7 +34,7 @@ public class FitnessService {
 	private FitnessRepository fRepo;
 
 	public void setNumberOfButtons(int numberOfButtons) {
-		if (mButtons > 6 || mButtons < 0) {
+		if (mButtons > 4 || mButtons < 0) {
 			mButtons = 0;
 		}
 		if (mButtons == 0) {
@@ -61,12 +63,7 @@ public class FitnessService {
 			currentUserInfo.setStyle(Style.valueOf(input));
 			break;
 		}
-		case "genderPage": {
-			currentUserInfo.setGender(Gender.valueOf(input));
-			break;
-		}
-		case "dificultyPage": {
-			currentUserInfo.setDificulty(Dificulty.valueOf(input));
+		case "resultPage": {
 			break;
 		}
 		default: {
@@ -85,7 +82,7 @@ public class FitnessService {
 					//set here the input because the we need to get the previousPage
 					setInput(Pages.values()[i - 1].name(), input);
 					activePage = Pages.valueOf(nextPage);
-					if (i <= 5) {
+					if (i <= 4) {
 						mButtons = i;
 					}
 				}
@@ -142,22 +139,6 @@ public class FitnessService {
 			model.addAttribute("allStyles", styleList);
 			break;
 		}
-		case genderPage: {
-			List<String> genderList = new ArrayList<>();
-			for (int i = 0; i < Gender.values().length; i++) {
-				genderList.add(Gender.values()[i].name());
-			}
-			model.addAttribute("allGenders", genderList);
-			break;
-		}
-		case dificultyPage: {
-			List<String> dificultyList = new ArrayList<>();
-			for (int i = 0; i < Dificulty.values().length; i++) {
-				dificultyList.add(Dificulty.values()[i].name());
-			}
-			model.addAttribute("allDificulties", dificultyList);
-			break;
-		}
 		default:
 			break;
 		}
@@ -198,38 +179,196 @@ public class FitnessService {
 		}
 		currentUserInfo.setStyle(tempStyle);
 	}
-
-	public void updateGenderInput(String gender) {
-		Gender tempGender = null;
-		boolean found = false;
-		for (int i = 0; i < Gender.values().length && !found; i++) {
-			if (Gender.values()[i].name().equals(gender)) {
-				found = true;
-				tempGender = Gender.valueOf(gender);
+	
+	public CurrentUserInfo result() {
+		if (currentUserInfo.getAge() != -1 && activePage.equals(Pages.weightPage)) {
+			List<Fitness> resultList = getByMinAge(currentUserInfo.getAge());
+			mPages2FitnessList.put(Pages.weightPage, resultList);
+			currentUserInfo.clear();
+			result(resultList);
+			return currentUserInfo;
+		}
+		if (currentUserInfo.getAge() != -1 && currentUserInfo.getWeight() != -1 && activePage.equals(Pages.heightPage)) {
+			if (mPages2FitnessList.get(Pages.weightPage).size() == 1) {
+				return currentUserInfo;
 			}
+			List<Fitness> list = new ArrayList<>();
+			int tempWeight = currentUserInfo.getWeight();
+			boolean findOne = false;
+			int weightFound = -1;
+			while (!findOne) {
+				for (Fitness fitness: mPages2FitnessList.get(Pages.weightPage)) {
+					if (fitness.getMaxWeight() == tempWeight) {
+						findOne = true;
+					}
+					if (findOne) {
+						weightFound = tempWeight;
+						break;
+					}
+				}
+				tempWeight--;
+			}
+			for (Fitness fitness: mPages2FitnessList.get(Pages.weightPage)) {
+				if (fitness.getMaxWeight() == weightFound) {
+					list.add(fitness);
+				}
+			}
+			mPages2FitnessList.put(Pages.heightPage, list);
+			currentUserInfo.clear();
+			result(list);
+			return currentUserInfo;
 		}
-
-		// if style not found in enum, default value is MALE
-		if (!found) {
-			tempGender = Gender.MALE;
+		if (currentUserInfo.getAge() != -1 && currentUserInfo.getWeight() != -1 && currentUserInfo.getHeight() != -1
+				&& activePage.equals(Pages.stylePage)) {
+			if (mPages2FitnessList.get(Pages.weightPage).size() == 1) {
+				return currentUserInfo;
+			}
+			List<Fitness> list = new ArrayList<>();
+			int tempHeight = currentUserInfo.getHeight();
+			boolean findOne = false;
+			int heightFound = - 1;
+			while (!findOne) {
+				for (Fitness fitness: mPages2FitnessList.get(Pages.heightPage)) {
+					if (fitness.getMaxHeight() == tempHeight) {
+						findOne = true;
+					}
+					if (findOne) {
+						heightFound = tempHeight;
+						break;
+					}
+				}
+				tempHeight --;
+			}
+			for (Fitness fitness: mPages2FitnessList.get(Pages.heightPage)) {
+				if (fitness.getMaxHeight() == heightFound) {
+					list.add(fitness);
+				}
+			}
+			mPages2FitnessList.put(Pages.stylePage, list);
+			currentUserInfo.clear();
+			result(list);
+			return currentUserInfo;
 		}
-		currentUserInfo.setGender(tempGender);
+		if (currentUserInfo.getAge() != -1 && currentUserInfo.getWeight() != -1 && currentUserInfo.getHeight() != -1 
+				&& currentUserInfo.getStyle() != null && activePage.equals(Pages.resultPage)) {
+			if (mPages2FitnessList.get(Pages.weightPage).size() == 1) {
+				return currentUserInfo;
+			}
+			List<Fitness> list = new ArrayList<>();
+			for (Fitness fitness: mPages2FitnessList.get(Pages.stylePage)) {
+				if (fitness.getStyle().equals(currentUserInfo.getStyle())) {
+					list.add(fitness);
+				}
+			}
+			mPages2FitnessList.put(Pages.resultPage, list);
+			currentUserInfo.clear();
+			result(list);
+			return currentUserInfo;
+		}
+		return null;
 	}
-
-	public void updateDificultyInput(String dificulty) {
-		Dificulty tempDificulty = null;
-		boolean found = false;
-		for (int i = 0; i < Dificulty.values().length && !found; i++) {
-			if (Dificulty.values()[i].name().equals(dificulty)) {
-				found = true;
-				tempDificulty = Dificulty.valueOf(dificulty);
+	
+	private void result(List<Fitness> resultList) {
+		for (Fitness fitness: resultList) {
+			if (currentUserInfo.getMaxAbdomen() <= fitness.getAbdomen()) {
+				currentUserInfo.setMaxAbdomen(fitness.getAbdomen());
 			}
+			if (currentUserInfo.getMaxBack() <= fitness.getBack()) {
+				currentUserInfo.setMaxBack(fitness.getBack());
+			}
+			if (currentUserInfo.getMaxBiceps() <= fitness.getBiceps()) {
+				currentUserInfo.setMaxBiceps(fitness.getBiceps());
+			}
+			if (currentUserInfo.getMaxChest() <= fitness.getChest()) {
+				currentUserInfo.setMaxChest(fitness.getChest());
+			}
+			if (currentUserInfo.getMaxFeet() <= fitness.getFeet()) {
+				currentUserInfo.setMaxFeet(fitness.getFeet());
+			}
+			if (currentUserInfo.getMaxForearm() <= fitness.getForearm()) {
+				currentUserInfo.setMaxForearm(fitness.getForearm());
+			}
+			if (currentUserInfo.getMaxLegs() <= fitness.getLegs()) {
+				currentUserInfo.setMaxLegs(fitness.getLegs());
+			}
+			if (currentUserInfo.getMaxShoulder() <= fitness.getShoulder()) {
+				currentUserInfo.setMaxShoulder(fitness.getShoulder());
+			}
+			if (currentUserInfo.getMaxTriceps() <= fitness.getTriceps()) {
+				currentUserInfo.setMaxTriceps(fitness.getTriceps());
+			}
+			if (currentUserInfo.getMinAbdomen() == -1) {
+				currentUserInfo.setMinAbdomen(fitness.getAbdomen());
+			} else {
+				if (currentUserInfo.getMinAbdomen() >= fitness.getAbdomen()) {
+					currentUserInfo.setMinAbdomen(fitness.getAbdomen());
+				}
+					
+			}
+			if (currentUserInfo.getMinBack() == -1) {
+				currentUserInfo.setMinBack(fitness.getBack());
+			} else {
+				if (currentUserInfo.getMinBack() >= fitness.getBack()) {
+					currentUserInfo.setMinBack(fitness.getBack());
+				}
+					
+			}
+			if (currentUserInfo.getMinBiceps() == -1) {
+				currentUserInfo.setMinBiceps(fitness.getBiceps());
+			} else {
+				if (currentUserInfo.getMinBiceps() >= fitness.getBiceps()) {
+					currentUserInfo.setMinBiceps(fitness.getBiceps());
+				}
+					
+			}
+			if (currentUserInfo.getMinChest() == -1) {
+				currentUserInfo.setMinChest(fitness.getChest());
+			} else {
+				if (currentUserInfo.getMinChest() >= fitness.getChest()) {
+					currentUserInfo.setMinChest(fitness.getChest());
+				}
+					
+			}
+			if (currentUserInfo.getMinFeet() == -1) {
+				currentUserInfo.setMinFeet(fitness.getFeet());
+			} else {
+				if (currentUserInfo.getMinFeet() >= fitness.getFeet()) {
+					currentUserInfo.setMinFeet(fitness.getFeet());
+				}
+					
+			}
+			if (currentUserInfo.getMinForearm() == -1) {
+				currentUserInfo.setMinForearm(fitness.getForearm());
+			} else {
+				if (currentUserInfo.getMinForearm() >= fitness.getForearm()) {
+					currentUserInfo.setMinForearm(fitness.getForearm());
+				}
+					
+			}
+			if (currentUserInfo.getMinLegs() == -1) {
+				currentUserInfo.setMinLegs(fitness.getLegs());
+			} else {
+				if (currentUserInfo.getMinLegs() >= fitness.getLegs()) {
+					currentUserInfo.setMinLegs(fitness.getLegs());
+				}
+					
+			}
+			if (currentUserInfo.getMinShoulder() == -1) {
+				currentUserInfo.setMinShoulder(fitness.getShoulder());
+			} else {
+				if (currentUserInfo.getMinShoulder() >= fitness.getShoulder()) {
+					currentUserInfo.setMinShoulder(fitness.getShoulder());
+				}
+					
+			}
+			if (currentUserInfo.getMinTriceps() == -1) {
+				currentUserInfo.setMinTriceps(fitness.getTriceps());
+			} else {
+				if (currentUserInfo.getMinTriceps() >= fitness.getTriceps()) {
+					currentUserInfo.setMinTriceps(fitness.getTriceps());
+				}
+					
+			}	
 		}
-
-		// if style not found in enum, default value is EASY
-		if (!found) {
-			tempDificulty = Dificulty.EASY;
-		}
-		currentUserInfo.setDificulty(tempDificulty);
 	}
 }

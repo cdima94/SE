@@ -1,7 +1,5 @@
 package com.android.fitness.service;
 
-import com.android.fitness.entity.Dificulty;
-import com.android.fitness.entity.Gender;
 import com.android.fitness.entity.Style;
 
 /**
@@ -17,15 +15,24 @@ public class CurrentUserInfo {
 	/*
 	 * These represents the number of exercises per type of exercise
 	 */
-	private int biceps;
-	private int triceps;
-	private int forearm;
-	private int shoulder;
-	private int chest;
-	private int back;
-	private int abdomen;
-	private int feet;
-	private int legs;
+	private int minBiceps;
+	private int maxBiceps;
+	private int minTriceps;
+	private int maxTriceps;
+	private int minForearm;
+	private int maxForearm;
+	private int minShoulder;
+	private int maxShoulder;
+	private int minChest;
+	private int maxChest;
+	private int minBack;
+	private int maxBack;
+	private int minAbdomen;
+	private int maxAbdomen;
+	private int minFeet;
+	private int maxFeet;
+	private int minLegs;
+	private int maxLegs;
 	
 	/*
 	 * These represents the input from the user
@@ -34,102 +41,180 @@ public class CurrentUserInfo {
 	private int weight;
 	private int height;
 	private Style style;
-	private Gender gender;
-	private Dificulty dificulty;
 	
 	private void init() {
-		biceps = -1;
-		triceps = -1;
-		forearm = -1;
-		shoulder = -1;
-		chest = -1;
-		back = -1;
-		abdomen = -1;
-		feet = -1;
-		legs = -1;
+		minBiceps = -1;
+		minTriceps = -1;
+		minForearm = -1;
+		minShoulder = -1;
+		minChest = -1;
+		minBack = -1;
+		minAbdomen = -1;
+		minFeet = -1;
+		minLegs = -1;
+		
+		maxBiceps = -1;
+		maxTriceps = -1;
+		maxForearm = -1;
+		maxShoulder = -1;
+		maxChest = -1;
+		maxBack = -1;
+		maxAbdomen = -1;
+		maxFeet = -1;
+		maxLegs = -1;
 		
 		age = -1;
 		weight = -1;
 		height = -1;
 		style = null;
-		gender = null;
-		dificulty = null;
 	}
 	
 	public CurrentUserInfo() {
 		init();
 	}
-
-	public int getBiceps() {
-		return biceps;
+	
+	public int getMinBiceps() {
+		return minBiceps;
 	}
 
-	public void setBiceps(int biceps) {
-		this.biceps = biceps;
+	public void setMinBiceps(int minBiceps) {
+		this.minBiceps = minBiceps;
 	}
 
-	public int getTriceps() {
-		return triceps;
+	public int getMaxBiceps() {
+		return maxBiceps;
 	}
 
-	public void setTriceps(int triceps) {
-		this.triceps = triceps;
+	public void setMaxBiceps(int maxBiceps) {
+		this.maxBiceps = maxBiceps;
 	}
 
-	public int getForearm() {
-		return forearm;
+	public int getMinTriceps() {
+		return minTriceps;
 	}
 
-	public void setForearm(int forearm) {
-		this.forearm = forearm;
+	public void setMinTriceps(int minTriceps) {
+		this.minTriceps = minTriceps;
 	}
 
-	public int getShoulder() {
-		return shoulder;
+	public int getMaxTriceps() {
+		return maxTriceps;
 	}
 
-	public void setShoulder(int shoulder) {
-		this.shoulder = shoulder;
+	public void setMaxTriceps(int maxTriceps) {
+		this.maxTriceps = maxTriceps;
 	}
 
-	public int getChest() {
-		return chest;
+	public int getMinForearm() {
+		return minForearm;
 	}
 
-	public void setChest(int chest) {
-		this.chest = chest;
+	public void setMinForearm(int minForearm) {
+		this.minForearm = minForearm;
 	}
 
-	public int getBack() {
-		return back;
+	public int getMaxForearm() {
+		return maxForearm;
 	}
 
-	public void setBack(int back) {
-		this.back = back;
+	public void setMaxForearm(int maxForearm) {
+		this.maxForearm = maxForearm;
 	}
 
-	public int getAbdomen() {
-		return abdomen;
+	public int getMinShoulder() {
+		return minShoulder;
 	}
 
-	public void setAbdomen(int abdomen) {
-		this.abdomen = abdomen;
+	public void setMinShoulder(int minShoulder) {
+		this.minShoulder = minShoulder;
 	}
 
-	public int getFeet() {
-		return feet;
+	public int getMaxShoulder() {
+		return maxShoulder;
 	}
 
-	public void setFeet(int feet) {
-		this.feet = feet;
+	public void setMaxShoulder(int maxShoulder) {
+		this.maxShoulder = maxShoulder;
 	}
 
-	public int getLegs() {
-		return legs;
+	public int getMinChest() {
+		return minChest;
 	}
 
-	public void setLegs(int legs) {
-		this.legs = legs;
+	public void setMinChest(int minChest) {
+		this.minChest = minChest;
+	}
+
+	public int getMaxChest() {
+		return maxChest;
+	}
+
+	public void setMaxChest(int maxChest) {
+		this.maxChest = maxChest;
+	}
+
+	public int getMinBack() {
+		return minBack;
+	}
+
+	public void setMinBack(int minBack) {
+		this.minBack = minBack;
+	}
+
+	public int getMaxBack() {
+		return maxBack;
+	}
+
+	public void setMaxBack(int maxBack) {
+		this.maxBack = maxBack;
+	}
+
+	public int getMinAbdomen() {
+		return minAbdomen;
+	}
+
+	public void setMinAbdomen(int minAbdomen) {
+		this.minAbdomen = minAbdomen;
+	}
+
+	public int getMaxAbdomen() {
+		return maxAbdomen;
+	}
+
+	public void setMaxAbdomen(int maxAbdomen) {
+		this.maxAbdomen = maxAbdomen;
+	}
+
+	public int getMinFeet() {
+		return minFeet;
+	}
+
+	public void setMinFeet(int minFeet) {
+		this.minFeet = minFeet;
+	}
+
+	public int getMaxFeet() {
+		return maxFeet;
+	}
+
+	public void setMaxFeet(int maxFeet) {
+		this.maxFeet = maxFeet;
+	}
+
+	public int getMinLegs() {
+		return minLegs;
+	}
+
+	public void setMinLegs(int minLegs) {
+		this.minLegs = minLegs;
+	}
+
+	public int getMaxLegs() {
+		return maxLegs;
+	}
+
+	public void setMaxLegs(int maxLegs) {
+		this.maxLegs = maxLegs;
 	}
 
 	public int getAge() {
@@ -163,22 +248,26 @@ public class CurrentUserInfo {
 	public void setStyle(Style style) {
 		this.style = style;
 	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public Dificulty getDificulty() {
-		return dificulty;
-	}
-
-	public void setDificulty(Dificulty dificulty) {
-		this.dificulty = dificulty;
-	}
 	
+	public void clear() {
+		minAbdomen = -1;
+		minBack = -1;
+		minBiceps = -1;
+		minChest = -1;
+		minFeet = -1;
+		minForearm = -1;
+		minLegs = -1;
+		minShoulder = -1;
+		minTriceps = -1;
+		maxAbdomen = -1;
+		maxBack = -1;
+		maxBiceps = -1;
+		maxChest = -1;
+		maxFeet = -1;
+		maxForearm = -1;
+		maxLegs = -1;
+		maxShoulder = -1;
+		maxTriceps = -1;
+	}
 	
 }
