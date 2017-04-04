@@ -101,7 +101,7 @@ public class FitnessService {
 	
 	public List<Fitness> getByMinAge(int minAge) {
 		List<Fitness> fitness = fRepo.findFitnessByMinAge(minAge);
-		while (fitness == null) {
+		while (fitness == null || fitness.isEmpty()) {
 			minAge = minAge - 1;
 			fitness = fRepo.findFitnessByMinAge(minAge);
 		}
